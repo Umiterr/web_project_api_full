@@ -1,0 +1,4 @@
+.feed__heart-button_on {
+  filter: brightness(100%);
+  background-image: url("../../../../images/UI/Heart-Black.svg");
+}

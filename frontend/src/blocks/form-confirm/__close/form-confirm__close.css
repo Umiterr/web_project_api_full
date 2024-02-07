@@ -1,0 +1,23 @@
+.form-confirm__close {
+  position: absolute;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  outline: inherit;
+  cursor: pointer;
+  transition: filter 0.3s;
+  right: -45px;
+  top: -45px;
+}
+
+.form-confirm__close:hover {
+  filter: brightness(50%);
+}
+
+@media screen and (max-width: 580px) {
+  .form-confirm__close {
+    top: -55px;
+    right: 10px;
+  }
+}

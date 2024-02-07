@@ -1,0 +1,15 @@
+.form__input-error {
+  opacity: 0;
+  margin: 0;
+  font-size: 13px;
+  text-align: center;
+  color: red;
+  /*width: 363px;*/
+  height: 30px;
+}
+
+@media screen and (max-width: 580px) {
+  .form__input-error {
+   width: 240px;
+  }
+}

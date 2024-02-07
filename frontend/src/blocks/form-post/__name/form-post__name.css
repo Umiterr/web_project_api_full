@@ -1,0 +1,25 @@
+.form-post__name {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 1px solid #c4c4c4;
+  height: 27px;
+  justify-content: center;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+.form-profile__name::placeholder {
+  color: #c4c4c4;
+}
+
+@media screen and (max-width: 580px) {
+  .form-profile__name {
+    width: 238px;
+  }
+}

@@ -1,0 +1,4 @@
+.form-post__inputs {
+  display: flex;
+  flex-direction: column;
+}

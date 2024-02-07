@@ -1,0 +1,33 @@
+.image-popup__close {
+  position: absolute;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  outline: inherit;
+  cursor: pointer;
+  transition: filter 0.3s;
+  right: 50px;
+  top: 60px;
+}
+
+.image-popup__close:hover {
+  filter: brightness(50%);
+}
+
+
+
+
+@media screen and (max-width: 938px) {
+  .image-popup__close {
+    right: 142px;
+    top: 196px;
+  }
+}
+
+@media screen and (max-width: 663px) {
+  .image-popup__close {
+    top: 361px;
+    right: 4px;
+  }
+}

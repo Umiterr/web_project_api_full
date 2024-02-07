@@ -1,0 +1,18 @@
+.feed__heart-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  outline: inherit;
+  cursor: pointer;
+  position: absolute;
+  bottom: 30px;
+  right: 18px;
+  height: 19px;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
+.feed__heart-button:hover {
+  opacity: 0.5;
+}

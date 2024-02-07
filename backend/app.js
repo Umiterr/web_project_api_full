@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const userRouter = require("./routes/users");
 const cardRouter = require("./routes/cards");
 const { login, createUser } = require("./controllers/users");
+const auth = require("./middlewares/auth");
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -23,19 +24,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 
-app.use((req, res, next) => {
-  req.user = {
-    _id: "659c5efe4c20c0c9189ffa8c",
-  };
+app.post("/signin", login);
+app.post("/signup", createUser);
 
-  next();
-});
+app.use(auth);
 
 app.use("/", userRouter);
 app.use("/", cardRouter);
-
-app.post("/signin", login);
-app.post("/signup", createUser);
 
 mongoose
   .connect("mongodb://localhost:27017/aroundb")

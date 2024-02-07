@@ -1,0 +1,38 @@
+.profile__info {
+  gap: 8px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding-left: 30px;
+  max-width: 414px;
+  height: 77px;
+  bottom: -10px;
+}
+
+@media screen and (max-width: 662px) {
+  .profile__info {
+    padding-left: 0px;
+    gap: 0px;
+    
+  }
+}
+
+
+@media screen and (max-width: 474px) {
+  .profile__info {
+    padding-left: 0px;
+    gap: 0px;
+    width: 300px;
+  }
+}
+
+
+@media screen and (max-width: 380px) {
+  .profile__info {
+    padding-left: 0px;
+    gap: 0px;
+    width: 213px;
+  }
+}
+
+    

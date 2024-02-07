@@ -1,0 +1,18 @@
+.form-confirm__window {
+  width: 430px;
+  height: 181px;
+  background-color: white;
+  border-radius: 3%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  gap: 15px;
+}
+
+@media screen and (max-width: 580px) {
+  .form-confirm__window {
+    width: 282px;
+    height: 181px;
+  }
+}

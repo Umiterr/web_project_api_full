@@ -1,0 +1,11 @@
+.image-popup__BG {
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.image-popup__BG:hover {
+  cursor: pointer;
+}

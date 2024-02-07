@@ -1,0 +1,53 @@
+.card__add-button {
+  background: none;
+  color: inherit;
+  padding: 0;
+  outline: inherit;
+  cursor: pointer;
+  transition: filter 0.3s;
+  border: 2px solid #ffffff;
+  height: 50px;
+  min-width: 150px;
+  align-self: center;
+  margin-left: 10%;
+}
+
+.card__add-button:hover {
+  filter: brightness(50%);
+}
+
+@media screen and (max-width: 886px) {
+  .card__add-button {
+    position: absolute;
+    right: 54px;
+    top: 240px;
+  }
+}
+
+@media screen and (max-width: 844px) {
+  .card__add-button {
+    position: absolute;
+
+    right: 72px;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .card__add-button {
+    position: absolute;
+    bottom: 590px;
+    right: 72px;
+  }
+}
+
+@media screen and (max-width: 662px) {
+  .card__add-button {
+    align-self: center;
+    margin: 0;
+    width: 282px;
+    margin-top: 50px;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+}

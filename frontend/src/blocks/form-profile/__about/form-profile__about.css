@@ -1,0 +1,35 @@
+.form-profile__about {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 1px solid #c4c4c4;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  width: 358px;
+  height: 27px;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.form-profile__about::placeholder {
+  color: #c4c4c4;
+}
+
+@media screen and (max-width: 580px) {
+  .form-profile__about {
+    width: 238px;
+  }
+}
+
+.form-profile__about_invalid {
+  border-bottom: 1px solid red; /* el borde rojo es para entradas no válidas */
+}
+
+.form-profile__about_valid {
+  border-bottom: 1px solid rgb(0, 255, 0); /* el borde rojo es para entradas no válidas */
+}

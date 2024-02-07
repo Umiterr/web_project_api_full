@@ -1,0 +1,20 @@
+.feed__trash-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  outline: inherit;
+  cursor: pointer;
+
+  transition: filter 0.3s;
+
+  height: 19.3px;
+  position: absolute;
+  right: 0;
+  padding-right: 15px;
+  padding-top: 18px;
+}
+
+.feed__trash-button:hover {
+  filter: brightness(70%);
+}

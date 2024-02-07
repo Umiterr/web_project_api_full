@@ -1,0 +1,10 @@
+.feed__post {
+  position: relative;
+  border-radius: 5%;
+  width: 282px;
+  height: 361px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}

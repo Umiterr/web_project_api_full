@@ -1,0 +1,16 @@
+.image-popup__image {
+  width: 75vh;
+}
+
+
+@media screen and (max-width: 947px) {
+  .image-popup__image {
+   width: 50vh;
+  }
+}
+
+@media screen and (max-width: 663px) {
+  .image-popup__image {
+   width: 25vh;
+  }
+}

@@ -1,0 +1,28 @@
+.form-image-profile__save {
+  background: black;
+  border: none;
+  padding: 0;
+  outline: inherit;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 358px;
+  height: 50.15px;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 2px;
+}
+
+.form-image-profile__save:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 580px) {
+  .form-image-profile__save {
+    width: 238px;
+  }
+}

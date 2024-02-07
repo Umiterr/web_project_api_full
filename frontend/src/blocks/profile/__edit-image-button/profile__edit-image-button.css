@@ -1,0 +1,13 @@
+.profile__edit-image-button {
+  height: 120px;
+  background: none;
+  width: 120px;
+  position: absolute;
+  outline: inherit;
+  border: none;
+
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+}
