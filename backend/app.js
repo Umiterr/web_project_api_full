@@ -2,7 +2,9 @@ const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-/* const cors = require("cors"); */
+const { celebrate, Joi, errors } = require("celebrate"); // Asegúrate de importar celebrate y Joi correctamente
+const validator = require("validator"); // Asegúrate de importar validator
+
 const userRouter = require("./routes/users");
 const cardRouter = require("./routes/cards");
 const { login, createUser } = require("./controllers/users");
@@ -14,18 +16,21 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/* app.use(
-  cors({
-    origin: "http://your-frontend-domain.com",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  }),
-); */
+const validateURL = (value, helpers) => {
+  if (validator.isURL(value)) {
+    return value;
+  }
+  return helpers.error("string.uri");
+};
+
+const validateURLSchema = Joi.object({
+  link: Joi.string().required().custom(validateURL),
+});
 
 // Routes
 
-app.post("/signin", login);
-app.post("/signup", createUser);
+app.post("/signin", celebrate({ body: validateURLSchema }), login);
+app.post("/signup", celebrate({ body: validateURLSchema }), createUser);
 
 app.use(auth);
 
@@ -55,3 +60,5 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send({ error: "Hubo un error en el servidor", status: 500 });
 });
+
+app.use(errors());
