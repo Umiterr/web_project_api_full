@@ -2,16 +2,32 @@ const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const { celebrate, Joi, errors } = require("celebrate"); // Asegúrate de importar celebrate y Joi correctamente
-const validator = require("validator"); // Asegúrate de importar validator
+const { celebrate, Joi, errors } = require("celebrate");
+const validator = require("validator");
+const { requestLogger, errorLogger } = require("./middlewares/logger");
+
+require("dotenv").config();
 
 const userRouter = require("./routes/users");
 const cardRouter = require("./routes/cards");
 const { login, createUser } = require("./controllers/users");
 const auth = require("./middlewares/auth");
 
+var cors = require("cors");
+
+// app.js
+
+require("dotenv").config();
+
 const { PORT = 3000 } = process.env;
 const app = express();
+
+// cors
+
+app.use(cors());
+app.options("*", cors());
+
+app.use(requestLogger);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +45,12 @@ const validateURLSchema = Joi.object({
 
 // Routes
 
+app.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("El servidor va a caer");
+  }, 0);
+});
+
 app.post("/signin", celebrate({ body: validateURLSchema }), login);
 app.post("/signup", celebrate({ body: validateURLSchema }), createUser);
 
@@ -36,7 +58,8 @@ app.use(auth);
 
 app.use("/", userRouter);
 app.use("/", cardRouter);
-
+app.use(errorLogger);
+app.use(errors());
 mongoose
   .connect("mongodb://localhost:27017/aroundb")
   .then(() => {
@@ -60,5 +83,3 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send({ error: "Hubo un error en el servidor", status: 500 });
 });
-
-app.use(errors());
