@@ -49,8 +49,8 @@ app.get("/crash-test", () => {
   }, 0);
 });
 
-/* app.post("/signin", celebrate({ body: validateURLSchema }), login);
-app.post("/signup", celebrate({ body: validateURLSchema }), createUser); */
+app.post("/signin", celebrate({ body: validateURLSchema }), login);
+app.post("/signup", celebrate({ body: validateURLSchema }), createUser);
 
 app.post("/signin", login);
 app.post("/signup", createUser);
@@ -59,8 +59,8 @@ app.use(auth);
 
 app.use("/", userRouter);
 app.use("/", cardRouter);
-/* app.use(requestLogger);
-app.use(errorLogger); */
+app.use(requestLogger);
+app.use(errorLogger);
 app.use(errors());
 
 mongoose
