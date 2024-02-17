@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.umiter.twilightparadox.com";
+export const BASE_URL = "http://localhost:3000";
 
 export const register = async (contraseña, email) => {
   try {

@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 // Obtener lista de usuarios
 module.exports.getUsers = (req, res) => {
@@ -21,6 +22,24 @@ module.exports.getUser = (req, res) => {
   const { id } = req.params;
 
   User.findById(id)
+    .then((user) => {
+      if (!user) {
+        res.status(404).send({ error: `Este usuario no existe` });
+        return;
+      }
+
+      res.send({ data: user });
+    })
+    .catch((error) => {
+      console.error("Error en el controlador:", error);
+      res.status(500).send({ error: "Error interno del servidor" });
+    });
+};
+
+module.exports.getUserInfo = (req, res) => {
+  const { _id } = req.user;
+
+  User.findById(_id)
     .then((user) => {
       if (!user) {
         res.status(404).send({ error: `Este usuario no existe` });
@@ -100,12 +119,20 @@ module.exports.updateAvatar = (req, res) => {
     );
 };
 
-// Crear token
 module.exports.login = (req, res) => {
   const { email, password } = req.body;
 
+  // Validar que se proporcionó un correo electrónico y una contraseña
+  if (!email || !password) {
+    return res
+      .status(400)
+      .send({ message: "Correo electrónico y contraseña son obligatorios." });
+  }
+
   return User.findUserByCredentials(email, password)
     .then((user) => {
+      //      res.send({ status: true });
+
       const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
         expiresIn: "7d",
       });

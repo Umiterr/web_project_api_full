@@ -15,11 +15,11 @@ const auth = require("./middlewares/auth");
 
 var cors = require("cors");
 
-// app.js
-
 require("dotenv").config();
+const { NODE_ENV, PORT = 3001, JWT_SECRET } = process.env;
 
-const { PORT = 3001 } = process.env;
+console.log(process.env.NODE_ENV);
+
 const app = express();
 
 // cors
@@ -37,10 +37,6 @@ const validateURL = (value, helpers) => {
   return helpers.error("string.uri");
 };
 
-const validateURLSchema = Joi.object({
-  link: Joi.string().required().custom(validateURL),
-});
-
 // Routes
 
 app.get("/crash-test", () => {
@@ -49,16 +45,33 @@ app.get("/crash-test", () => {
   }, 0);
 });
 
-app.post("/signin", celebrate({ body: validateURLSchema }), login);
-app.post("/signup", celebrate({ body: validateURLSchema }), createUser);
-
 app.post("/signin", login);
 app.post("/signup", createUser);
 
 app.use(auth);
 
-app.use("/", userRouter);
-app.use("/", cardRouter);
+// Rutas de usuario
+app.use(
+  "/",
+  celebrate({
+    body: {
+      link: Joi.string().required().custom(validateURL),
+    },
+  }),
+  userRouter
+);
+
+// Rutas de tarjeta
+app.use(
+  "/",
+  celebrate({
+    body: {
+      link: Joi.string().required().custom(validateURL),
+    },
+  }),
+  cardRouter
+);
+
 app.use(requestLogger);
 app.use(errorLogger);
 app.use(errors());
