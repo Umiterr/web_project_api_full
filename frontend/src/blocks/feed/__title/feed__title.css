@@ -10,4 +10,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 224px;
+  padding-left: 10px;
+  align-self: center;
 }

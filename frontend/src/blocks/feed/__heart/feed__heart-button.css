@@ -11,6 +11,8 @@
   height: 19px;
   transition: opacity 0.3s;
   opacity: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .feed__heart-button:hover {

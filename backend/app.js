@@ -19,15 +19,13 @@ var cors = require("cors");
 
 require("dotenv").config();
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 const app = express();
 
 // cors
 
 app.use(cors());
 app.options("*", cors());
-
-app.use(requestLogger);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -51,15 +49,20 @@ app.get("/crash-test", () => {
   }, 0);
 });
 
-app.post("/signin", celebrate({ body: validateURLSchema }), login);
-app.post("/signup", celebrate({ body: validateURLSchema }), createUser);
+/* app.post("/signin", celebrate({ body: validateURLSchema }), login);
+app.post("/signup", celebrate({ body: validateURLSchema }), createUser); */
+
+app.post("/signin", login);
+app.post("/signup", createUser);
 
 app.use(auth);
 
 app.use("/", userRouter);
 app.use("/", cardRouter);
-app.use(errorLogger);
+/* app.use(requestLogger);
+app.use(errorLogger); */
 app.use(errors());
+
 mongoose
   .connect("mongodb://localhost:27017/aroundb")
   .then(() => {
@@ -82,4 +85,5 @@ app.use((_, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send({ error: "Hubo un error en el servidor", status: 500 });
+  next(err);
 });
