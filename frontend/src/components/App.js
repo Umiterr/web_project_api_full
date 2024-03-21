@@ -30,6 +30,13 @@ export function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
+  const Navigate = useNavigate();
+  const currentPath = window.location.pathname;
+
+  const shouldShowHeader = () => {
+    return currentPath !== "/tienda" && currentPath !== "/profile";
+  };
+
   const fetchUserData = async () => {
     try {
       const userInfo = await api.getUserInfo();
